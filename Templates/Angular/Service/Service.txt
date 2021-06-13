@@ -1,0 +1,21 @@
+﻿import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
+import { HttpclientService } from './httpclient.service';
+
+
+@Injectable()
+export class CustomService {
+    constructor(private httpclientService: HttpclientService) { }
+    loadCustomList(applicationItemID) {
+      var postResult$ = new Subject();
+      var url='Security/CustomGetList?ApplicationItemID=' + applicationItemID;
+      
+      var promise$ = this.httpclientService.post(url, null);
+      promise$.subscribe(response => {
+        postResult$.next(response);
+      }
+      
+      )
+      return postResult$;
+    }
+}

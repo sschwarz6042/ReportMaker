@@ -1,0 +1,7 @@
+﻿declare var moment: any;
+
+
+@Component({
+    templateUrl: './custom.component.html',
+
+})

@@ -1,0 +1,8 @@
+﻿export class CustomComponent implements OnInit {
+    constructor(
+        private reportService: ReportService,
+        //Insert Custom Services Here
+
+    ) {
+
+    }

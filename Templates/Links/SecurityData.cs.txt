@@ -1,0 +1,1 @@
+﻿reportApplication.Children.Add(new ApplicationItem { ApplicationItemKey = "Report|CustomCamelCase", ApplicationItemName = "Custom Many Words" });

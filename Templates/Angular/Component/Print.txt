@@ -1,0 +1,29 @@
+﻿    Print() {
+
+        var component = this;
+        this.errorMessage = "";
+
+        //Insert Custom Error Checks Here
+      
+
+        var strParam = "";
+        this.isProcessing = true;
+    
+        //Insert Custom Parameters Here
+
+
+        var reportID = MyReportID;
+
+        var result = this.reportService.Print(reportID, strParam, this.report.SchoolID);
+
+        result.subscribe(
+            (response: any) => {
+                component.isProcessing = false;
+                window.open(response);
+            },
+            error => {
+                component.errorMessage = error
+                component.isProcessing = false;
+            }
+        )
+    }

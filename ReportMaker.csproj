@@ -1,0 +1,91 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Templates\Angular\Component\Component.txt" />
+    <None Remove="Templates\Angular\Component\ComponentALL.txt" />
+    <None Remove="Templates\Angular\Component\Export_Class.txt" />
+    <None Remove="Templates\Angular\Component\Imports.txt" />
+    <None Remove="Templates\Angular\Component\LoadList.txt" />
+    <None Remove="Templates\Angular\Component\OnInit.txt" />
+    <None Remove="Templates\Angular\Component\Print.txt" />
+    <None Remove="Templates\Angular\Component\Report.txt" />
+    <None Remove="Templates\Angular\Component\SetUpLists.txt" />
+    <None Remove="Templates\Angular\Component\StaticLists.txt" />
+    <None Remove="Templates\Angular\Service\Service.txt" />
+    <None Remove="Templates\HTML\Controls\ComboBox.txt" />
+    <None Remove="Templates\HTML\Controls\DatePicker.txt" />
+    <None Remove="Templates\HTML\Controls\TextBox.txt" />
+    <None Remove="Templates\HTML\MainHTML.txt" />
+    <None Remove="Templates\Links\Index.ts.txt" />
+    <None Remove="Templates\Links\report-routes.ts.txt" />
+    <None Remove="Templates\Links\SecurityData.cs.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Templates\Angular\Component\Component.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\Angular\Component\ComponentALL.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\Angular\Component\Export_Class.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\Angular\Component\Imports.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\Angular\Component\LoadList.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\Angular\Component\OnInit.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\Angular\Component\Print.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\Angular\Component\Report.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\Angular\Component\SetUpLists.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\Angular\Component\StaticLists.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\Angular\Service\Service.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\HTML\Controls\ComboBox.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\HTML\Controls\DatePicker.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\HTML\Controls\TextBox.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\HTML\MainHTML.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\Links\Index.ts.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\Links\report-routes.ts.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\Links\SecurityData.cs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CsvHelper" Version="27.1.0" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,6 @@
+﻿                    <div class="form-group">
+                        <label class="col-sm-3  col-lg-2  control-label">Custom With Space</label>
+                        <div class="col-sm-4   col-lg-3">
+                                <p-calendar showIcon=true showButtonBar="true"  [(ngModel)]="report.CustomCamelCase"  name="txtCustomCamelCase"></p-calendar>
+                        </div>
+                    </div>

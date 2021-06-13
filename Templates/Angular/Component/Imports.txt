@@ -1,0 +1,3 @@
+﻿import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { ReportService } from '../report.service';
+//Import Custom Services Here

@@ -1,0 +1,6 @@
+﻿    //Insert Custom Lists Here
+    
+
+    user: any;
+    errorMessage: any = "";
+    isProcessing: any = false;

@@ -1,0 +1,25 @@
+﻿    
+    private CustomList() {
+      
+        this.report.CustomID = 0;
+        var result = this.CustomService.loadCustomList(this.report.SchoolID);
+        result.subscribe(
+            response => {
+                this.CustomList = response;
+
+                if (this.CustomList.length > 1) {
+                    this.CustomList.unshift({
+                        CustomID: 0,
+                        CustomDesc: "All Customs"
+                    })
+                } else {
+                    this.report.CustomID = this.CustomList[0].CustomID
+                }
+
+
+            },
+            error => {
+            }
+        )
+
+    }

@@ -1,0 +1,252 @@
+﻿import { Component, OnInit, AfterViewInit } from '@angular/core';
+//Import Services Here
+
+import { ReportService } from '../report.service';
+declare var moment: any;
+
+
+@Component({
+    templateUrl: './customnamelower.component.html',
+
+})
+export class CustomNameComponent implements OnInit {
+    constructor(
+        //Inject Services Here
+
+        private reportService: ReportService
+    ) {
+
+    }
+    report = {
+        //Initialize Default Parameters Here
+    }
+
+    //Initialize Dynamic Lists Here
+    gradeList: any = [];
+    homeroomList: any = [];
+    academyList: any = [];
+    groupList: any = [];
+    schoolList: any = [];
+    
+    user: any;
+    errorMessage: any = "";
+    isProcessing: any = false;
+
+    //Initialize Static Lists Here
+
+    lstByType = [
+        {
+          ByTypeDesc: 'Name'
+        },
+        {
+          ByTypeDesc: 'Academy'
+        }
+        ,
+        {
+          ByTypeDesc: 'Homeroom'
+        }
+        ,
+        {
+          ByTypeDesc: 'Grade'
+        } ,
+        {
+          ByTypeDesc: 'IssueDate'
+        }
+      ]
+
+
+
+  onSchoolChange(value) {
+
+    this.report.SchoolID = value
+    this.GradeList();
+    this.AcademyList();
+    this.HomeroomList();
+    this.GroupList();
+    
+}
+   
+    ngOnInit() {
+        this.loadSchoolist();
+               
+      }
+      
+      private loadSchoolist() {
+        var result = this.schoolService.loadSchoolList("");
+        result.subscribe(
+          response => {
+            this.schoolList = response;
+    
+            if (this.schoolList.length > 1) {
+              this.schoolList.unshift({
+                SchoolID: 0,
+                SchoolName: "All Schools"
+              })
+            } 
+            else {
+                this.onSchoolChange(this.schoolList[0].SchoolID)
+              
+            }
+    
+    
+          },
+          error => {
+          }
+        )
+    
+      }
+
+    private GradeList() {
+      
+        this.report.GradeLevelID = 0;
+        var result = this.reportService.GradesGetList(this.report.SchoolID);
+        result.subscribe(
+            response => {
+                this.gradeList = response;
+
+                if (this.gradeList.length > 1) {
+                    this.gradeList.unshift({
+                        GradeLevelID: 0,
+                        GradeLevelDesc: "All Grades"
+                    })
+                } else {
+                    this.report.GradeLevelID = this.gradeList[0].GradeLevelID
+                }
+
+
+            },
+            error => {
+            }
+        )
+
+    }
+    private AcademyList() {
+
+        this.report.AcademyID = 0;
+        var result = this.reportService.AcademyGetList(this.report.SchoolID);
+        result.subscribe(
+            response => {
+                this.academyList = response;
+
+                if (this.academyList.length > 1) {
+                    this.academyList.unshift({
+                        AcademyID: 0,
+                        AcademyDesc: "All Academies"
+                    })
+                } else {
+                    this.report.AcademyID = this.academyList[0].AcademyID
+                }
+
+
+            },
+            error => {
+            }
+        )
+
+    }
+
+
+    private GroupList() {
+        this.report.GroupID = 0;
+
+        var result = this.reportService.GroupGetList(this.report.SchoolID);
+        result.subscribe(
+            response => {
+                this.groupList = response;
+
+                if (this.groupList.length > 1) {
+                    this.groupList.unshift({
+                        GroupID: 0,
+                        GroupName: "All Groups"
+                    })
+                }  else if (this.groupList.length==1){
+                    this.report.GroupID = this.groupList[0].GroupID
+                }
+                else  {
+                    this.groupList.push({
+                        GroupID: 0,
+                        GroupName: "No Record found"
+                    })
+                }
+
+            },
+            error => {
+            }
+        )
+
+    }
+    private HomeroomList() {
+        this.report.HomeroomID = 0;
+        var result = this.reportService.HomeroomGetList(this.report.SchoolID);
+        result.subscribe(
+            response => {
+                this.homeroomList = response;
+
+                if (this.homeroomList.length > 1) {
+                    this.homeroomList.unshift({
+                        HomeroomID: 0,
+                        HomeroomDesc: "All Homerooms"
+                    })
+                } else {
+                    this.report.HomeroomID = this.homeroomList[0].HomeroomID
+                }
+
+
+            },
+            error => {
+            }
+        )
+
+    }
+
+    Print() {
+
+        var component = this;
+        this.errorMessage = "";
+
+        if (!this.report.SchoolID) {
+            this.errorMessage = "Select the School";
+            return
+          }
+      
+
+        var strParam = "";
+        this.isProcessing = true;
+        strParam =  this.report.SchoolID + "|SchoolID"
+        var startDate = moment(this.report.startDate).format("MM/DD/YYYY");
+        var endDate = moment(this.report.endDate).format("MM/DD/YYYY");
+
+        strParam += "," + this.report.GradeLevelID + "|GradeLevelID"
+        strParam += "," + this.report.AcademyID + "|ACADEMYID"
+        strParam += "," + this.report.HomeroomID + "|HOMEROOMID"
+        strParam += "," + this.report.GroupID + "|GROUPID"
+
+        strParam += "," + startDate + "|STARTDATE"
+        strParam += "," + endDate + "|ENDDATE"
+        strParam += "," + this.report.byType + "|ORDERBY"
+        strParam += ",8C87B20B-5813-4F74-8375-9898FD7B0C74|Imagelogo"
+
+
+
+
+        var reportID = CustomReportID;
+
+        var result = this.reportService.Print(reportID, strParam, this.report.SchoolID);
+
+        result.subscribe(
+            (response: any) => {
+                component.isProcessing = false;
+                window.open(response);
+            },
+            error => {
+                component.errorMessage = error
+                component.isProcessing = false;
+            }
+        )
+    }
+
+}
+
+
+
+
